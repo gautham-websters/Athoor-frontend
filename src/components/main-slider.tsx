@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
+import type { Swiper as SwiperInstance } from "swiper";
 
 import "swiper/css";
-import "swiper/css/pagination";
 
 interface Slide {
   id: number;
@@ -16,7 +17,6 @@ interface Slide {
   whatsapp: string;
 }
 
-// 🔥 Dynamic data (replace later with API/CMS)
 const slides: Slide[] = [
   {
     id: 1,
@@ -48,16 +48,28 @@ const slides: Slide[] = [
 ];
 
 const HeroSlider = () => {
+  const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const totalSlides = slides.length;
+
+  const handleSlideChange = (swiperInstance: SwiperInstance) => {
+    setCurrentSlide(swiperInstance.realIndex);
+  };
+
+  const handleDotClick = (index: number) => {
+    if (swiper) {
+      swiper.slideToLoop(index);
+    }
+  };
+
   return (
     <section className="relative">
       <Swiper
-        modules={[Autoplay, Pagination]}
+        onSwiper={setSwiper}
+        modules={[Autoplay]}
         autoplay={{ delay: 3500, disableOnInteraction: false }}
         loop
-        pagination={{
-          clickable: true,
-          el: ".custom-pagination",
-        }}
+        onSlideChange={handleSlideChange}
         className="main-slider"
       >
         {slides.map((slide) => (
@@ -73,8 +85,7 @@ const HeroSlider = () => {
               <div className="container mx-auto relative z-10 px-4 md:px-0">
                 <div className="row flex items-center">
                   <div className="md:w-6/12 lg:w-7/12 text-center md:text-left p-4 md:p-0">
-
-                    <h3 className="text-[32px] md:text-[70px] leading-[32px] md:leading-[80px] font-bold text-[var(--brand-blue)] capitalize">
+                    <h3 className="text-[32px] md:text-[70px] leading-[32px] md:leading-[80px] font-extrabold text-[#16406e] capitalize">
                       {slide.title}
                     </h3>
 
@@ -83,7 +94,6 @@ const HeroSlider = () => {
                     </p>
 
                     <div className="mt-4 md:mt-10 flex flex-col md:flex-row gap-3 justify-center md:justify-start">
-                      
                       {/* Call */}
                       <a
                         href={`tel:${slide.phone}`}
@@ -112,7 +122,23 @@ const HeroSlider = () => {
                         />
                         {slide.whatsapp}
                       </a>
+                    </div>
 
+                    {/* Pagination Dots */}
+                    <div className=" mt-8 mb-6 md:mt-10 flex gap-3">
+                      {Array.from({ length: totalSlides }).map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleDotClick(index)}
+                          className={`transition-all duration-300 ease-in-out rounded-full ${
+                            currentSlide === index
+                              ? "w-8 h-2.5 bg-black"
+                              : "w-2.5 h-2.5 bg-white border-2 border-black hover:bg-gray-300"
+                          }`}
+                          aria-label={`Go to slide ${index + 1}`}
+                          title={`Slide ${index + 1}`}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -120,24 +146,19 @@ const HeroSlider = () => {
             </div>
           </SwiperSlide>
         ))}
-
-        {/* Custom Pagination (to match your Owl style) */}
-        <div className="custom-pagination absolute z-20 bottom-5 md:bottom-14 left-0 md:left-10 w-full md:w-auto flex justify-center md:justify-start gap-2"></div>
       </Swiper>
 
-      {/* Pagination Styling */}
-      <style jsx global>{`
-        .custom-pagination .swiper-pagination-bullet {
-          width: 12px;
-          height: 12px;
-          border-radius: 999px;
-          background: #fff;
-          border: 1px solid #000;
-          opacity: 1;
-        }
+      {/* Progress Bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 z-10">
+        <div
+          className="h-full bg-black transition-all duration-500 ease-in-out"
+          style={{ width: `${((currentSlide + 1) / totalSlides) * 100}%` }}
+        />
+      </div>
 
-        .custom-pagination .swiper-pagination-bullet-active {
-          background: #000;
+      <style jsx global>{`
+        .main-slider {
+          position: relative;
         }
       `}</style>
     </section>
