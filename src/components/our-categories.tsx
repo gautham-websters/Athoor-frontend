@@ -1,7 +1,6 @@
-// components/CategoriesCarousel.tsx
+"use client";
 import Image from "next/image";
 import Slider from "react-slick";
-
 
 interface Category {
   name: string;

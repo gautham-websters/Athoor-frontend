@@ -242,7 +242,7 @@ export function MobileMenu() {
                         isActive ? "rotate-90" : ""
                       }`}
                     >
-                      ›
+                      {">"}
                     </span>
                   </button>
                 </div>
@@ -272,7 +272,7 @@ export function MobileMenu() {
 export function Navbar() {
   return (
     <div className="w-full bg-gray-100">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-2 md:py-0">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-2 md:py-4">
         
         {/* Mobile menu button (hook later) */}
         <button className="md:hidden w-6 h-6" />
@@ -288,12 +288,12 @@ export function Navbar() {
                 </span>
 
                 {item.children.length > 0 && (
-                  <ul className="absolute left-0 top-full mt-2 hidden group-hover:block bg-white shadow-md border border-gray-200 min-w-[220px] z-50">
+                  <ul className="absolute left-0 top-full mt-2 divide-y divide-neutral-300 hidden group-hover:block bg-white shadow-md border border-gray-200 min-w-[220px] z-50">
                     {item.children.map((sub, j) => (
                       <li key={j}>
                         <Link
                           href={sub.href}
-                          className="block px-4 py-2 hover:bg-gray-100"
+                          className="block px-4 py-2 hover:bg-gray-100 text-neutral-500 "
                         >
                           {sub.title}
                         </Link>

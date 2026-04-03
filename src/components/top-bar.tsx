@@ -1,9 +1,10 @@
 export default function TopBar() {
   return (
-    <div className="bg-gray-800 text-white py-2">
+    <div className="bg-[#16406e] text-white py-4">
       <div className="container mx-auto px-4">
-        <p className="text-sm text-center">
-          Welcome to Athoor - Your Trusted Furniture Rental Partner in Dubai!
+        <p className="text-md text-center">
+          Top Event Furniture Rental Company in Dubai. Rent furniture in Dubai
+          Today!
         </p>
       </div>
     </div>
