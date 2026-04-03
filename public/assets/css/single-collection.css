@@ -1,0 +1,82 @@
+.single-collection-main-banner {
+    height: 600px;
+    background-size: 100% auto;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+}
+
+.single-collection-main-banner .container {
+    display: flex;
+    align-items: end;
+    padding-bottom: 100px;
+    height: 100%;
+}
+
+.single-collection-main-banner .row {
+    row-gap: 10px;
+}
+
+.single-collection-main-banner .title {
+    font-size: 80px;
+    font-weight: 500;
+    line-height: 80px;
+}
+
+.single-collection-main-banner .description {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 30px;
+    margin-top: 20px;
+    max-width: 500px;
+}
+
+.single-collection-main-banner a {
+    width: max-content;
+    border-radius: 6px;
+    transform: translateY(0);
+    transition: transform .4s;
+}
+
+.single-collection-main-banner a:last-child {
+    border: 1px solid #fff !important;
+    background-color: rgb(0, 0, 0, 10%);
+    backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px) !important; /* Safari support */
+}
+
+.single-collection-main-banner a:hover {
+    transform: translateY(-8px);
+}
+
+.single-collection-main-banner a img {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 768px) {
+    .single-collection-main-banner {
+        height: 410px;
+        background-size: auto 100%;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+    }
+
+    .single-collection.mobile .title {
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 60px;
+    }
+
+    .single-collection.mobile .description {
+        font-size: 13px;
+        line-height: normal;
+        margin-bottom: 22px !important;
+    }
+
+    .single-collection.mobile .cell-phones a {
+        white-space: nowrap;
+        height: unset;
+        font-size: 14px;
+        padding: 6px 10px !important;
+    }
+}
