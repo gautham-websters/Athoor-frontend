@@ -16,6 +16,7 @@ robocopy public C:\inetpub\athoor-frontend\public /E
 copy /Y package.json C:\inetpub\athoor-frontend\
 copy /Y next.config.ts C:\inetpub\athoor-frontend\
 copy /Y web.config C:\inetpub\athoor-frontend\
+copy /Y server.js C:\inetpub\athoor-frontend\
 
 echo Restarting the application with PM2...
 cd C:\inetpub\athoor-frontend
