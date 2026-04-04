@@ -226,7 +226,7 @@ const ProductInfoTabs = ({ tabs }: ProductInfoTabsProps) => {
 export default function ProductDetailPage() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const mediaItems = [
+  const mediaItems: MediaItem[] = [
     {
       type: "image",
       src: "/assets/images/img_baker_golden_leg.png",
