@@ -43,9 +43,9 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   createServer((req, res) => {
     handle(req, res);
-  }).listen(5173, (err) => {
+  }).listen(4173, (err) => {
     if (err) throw err;
-    console.log("Server running on http://localhost:5173");
+    console.log("Server running on http://localhost:4173");
   });
 });
 ```
@@ -71,7 +71,7 @@ Create a `web.config` file in your website root:
       <rules>
         <rule name="ReverseProxyToNextJS" stopProcessing="true">
           <match url="(.*)" />
-          <action type="Rewrite" url="http://localhost:5173/{R:1}" />
+          <action type="Rewrite" url="http://localhost:4173/{R:1}" />
         </rule>
       </rules>
     </rewrite>
@@ -112,7 +112,7 @@ Add this to your IIS `web.config` to ensure only Cloudflare can access your serv
 
 ## Testing Your Setup
 1. Verify PM2 is running: `pm2 list`
-2. Test locally: `http://localhost:5173`
+2. Test locally: `http://localhost:4173`
 3. Test through IIS locally: `http://localhost`
 4. Test through Cloudflare: `https://yourdomain.com`
 
