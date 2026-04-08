@@ -4,53 +4,21 @@ import Image from "next/image";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+// import { slides, type Slide } from "@/api/slides";
+import { type Slide } from "@/api/slides";
 import type { Swiper as SwiperInstance } from "swiper";
 
 import "swiper/css";
 
-interface Slide {
-  id: number;
-  bgImage: string;
-  title: string;
-  description: string;
-  phone: string;
-  whatsapp: string;
-}
+type HeroSliderProps = {
+  slides?: Slide[] | null;
+};
 
-const slides: Slide[] = [
-  {
-    id: 1,
-    bgImage: "/uploads/A7405192.png",
-    title: "Lorem ipsum dolor sit amet conse.",
-    description:
-      "Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur.",
-    phone: "+971507644472",
-    whatsapp: "+971566080777",
-  },
-  {
-    id: 2,
-    bgImage: "/uploads/A7406483.png",
-    title: "Lorem ipsum dolor sit amet conse.",
-    description:
-      "Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur.",
-    phone: "+971507644472",
-    whatsapp: "+971566080777",
-  },
-  {
-    id: 3,
-    bgImage: "/uploads/A7405192.png",
-    title: "Lorem ipsum dolor sit amet conse.",
-    description:
-      "Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur.",
-    phone: "+971507644472",
-    whatsapp: "+971566080777",
-  },
-];
-
-const HeroSlider = () => {
+const HeroSlider = ({ slides }: HeroSliderProps) => {
+  const data = Array.isArray(slides) ? slides : [];
   const [swiper, setSwiper] = useState<SwiperInstance | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = slides.length;
+  const totalSlides = data.length;
 
   const handleSlideChange = (swiperInstance: SwiperInstance) => {
     setCurrentSlide(swiperInstance.realIndex);
@@ -72,7 +40,7 @@ const HeroSlider = () => {
         onSlideChange={handleSlideChange}
         className="main-slider"
       >
-        {slides.map((slide) => (
+        {data.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div
               className="relative flex items-end md:items-center pb-10 md:pb-0 min-h-[86vh] md:min-h-[640px] bg-cover bg-[right_center]"

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "bgImage": "/uploads/A7405192.png",
+    "title": "Lorem ipsum dolor sit amet conse.",
+    "description": "Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur.",
+    "phone": "+971507644472",
+    "whatsapp": "+971566080777"
+  },
+  {
+    "id": 2,
+    "bgImage": "/uploads/A7406483.png",
+    "title": "Lorem ipsum dolor sit amet conse.",
+    "description": "Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur.",
+    "phone": "+971507644472",
+    "whatsapp": "+971566080777"
+  },
+  {
+    "id": 3,
+    "bgImage": "/uploads/A7405192.png",
+    "title": "Lorem ipsum dolor sit amet conse.",
+    "description": "Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur Lorem ipsum dolar sit amet constreteur.",
+    "phone": "+971507644472",
+    "whatsapp": "+971566080777"
+  }
+]
