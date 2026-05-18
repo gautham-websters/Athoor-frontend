@@ -1,5 +1,9 @@
 import slidesData from "../data/slides.json";
 
+// This tells Next: Do NOT prerender this page during build.
+// And avoid: ECONNREFUSED
+export const dynamic = "force-dynamic";
+
 export type Slide = {
   id: number;
   bgImage: string;
