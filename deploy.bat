@@ -35,7 +35,7 @@ REM INSTALL DEPENDENCIES
 REM =========================================================
 echo Installing dependencies...
 
-call npm install --omit=dev --no-audit --no-fund
+call npm install --no-audit --no-fund
 
 if %errorlevel% neq 0 (
     echo npm install failed
