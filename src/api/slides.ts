@@ -35,19 +35,19 @@ function normalizeSlides(payload: unknown): Slide[] {
 export async function getSlides(): Promise<Slide[]> {
   if (useMock) return slides;
 
-  // IMPORTANT: block build-time execution
-  if (process.env.NEXT_PHASE === "phase-production-build") {
-    return slides; // fallback or empty
-  }
-
-  // On Windows: $Env:NODE_EXTRA_CA_CERTS='D:\repos\Athoor-frontend\localhost.crt' npm run dev
+  try {
+    // On Windows: $Env:NODE_EXTRA_CA_CERTS='D:\repos\Athoor-frontend\localhost.crt' npm run dev
     // On macOS/Linux: export NODE_EXTRA_CA_CERTS='D:\repos\Athoor-frontend\localhost.crt'
-  const res = await fetch("https://localhost:7067/api/home/index", {
-    next: { revalidate: 60 },
-  });
+    const res = await fetch("https://localhost:7067/api/home/index", {
+      next: { revalidate: 60 },
+    });
 
-  if (!res.ok) throw new Error("Failed to load slides");
+    if (!res.ok) throw new Error("Failed to load slides");
 
-  const payload = await res.json();
-  return normalizeSlides(payload);
+    const payload = await res.json();
+    return normalizeSlides(payload);
+  } catch (err) {
+    console.error("Slides API failed, using mock fallback:", err);
+    return slides;
+  }
 }
