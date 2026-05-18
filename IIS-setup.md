@@ -52,6 +52,9 @@ app.prepare().then(() => {
 
 ### 5. Manage the Process with PM2
 ```bash
+# Always open Powershell as an Administrator
+# Otherwise pm2 profile will throw socket errors
+cd "C:\inetpub\athoor-frontend"
 npm install -g pm2
 pm2 start server.js --name "nextjs-app"
 pm2 save
