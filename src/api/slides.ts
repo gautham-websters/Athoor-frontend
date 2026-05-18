@@ -1,9 +1,5 @@
 import slidesData from "../data/slides.json";
 
-// This tells Next: Do NOT prerender this page during build.
-// And avoid: ECONNREFUSED
-export const dynamic = "force-dynamic";
-
 export type Slide = {
   id: number;
   bgImage: string;
@@ -38,6 +34,11 @@ function normalizeSlides(payload: unknown): Slide[] {
 
 export async function getSlides(): Promise<Slide[]> {
   if (useMock) return slides;
+
+  // IMPORTANT: block build-time execution
+  if (process.env.NEXT_PHASE === "phase-production-build") {
+    return slides; // fallback or empty
+  }
 
   // On Windows: $Env:NODE_EXTRA_CA_CERTS='D:\repos\Athoor-frontend\localhost.crt' npm run dev
     // On macOS/Linux: export NODE_EXTRA_CA_CERTS='D:\repos\Athoor-frontend\localhost.crt'
