@@ -126,3 +126,11 @@ Add this to your IIS `web.config` to ensure only Cloudflare can access your serv
 - The `.next` folder must be rebuilt and redeployed for each update
 
 This setup is production-ready and performs well for most Next.js applications on Windows servers.
+
+## Deployment workflow
+1. Push to the main
+1. Access the server via RDP (Remote Desktop Protocol)
+1. Open the PowerShell as Admin
+1. `cd C:\repos\Athoor-frontend`
+1. .\deploy
+1. pm2 list
